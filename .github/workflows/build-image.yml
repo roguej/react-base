@@ -9,11 +9,8 @@ jobs:
       USER_NAME: uselessRegistry
       PWD: ${{ secrets.AZURE_PUSH_KEY }}
     steps:
-      - run: ls ..
-        working-directory: work
-      - run: ls
-        working-directory: work
-      - run: pwd
+      - run: ls 
+        working-directory: /
       # $LOGIN_SERVER
       #- run: docker build -t $LOGIN_SERVER/$REPO_NAME:latest .
       #- run: docker login $LOGIN_SERVER --username $USER_NAME --password $PWD
