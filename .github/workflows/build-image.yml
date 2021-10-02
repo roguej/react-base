@@ -9,8 +9,8 @@ jobs:
       USER_NAME: uselessRegistry
     steps:
       - uses: actions/checkout@main
-      - env:
+        env:
           PWD: ${{ secrets.AZURE_PUSH_KEY }}
+        run: echo $PWD | docker login $LOGIN_SERVER --username $USER_NAME --password-stdin
       - run: docker build -t $LOGIN_SERVER/$REPO_NAME:latest .
-      - run: echo $PWD | docker login $LOGIN_SERVER --username $USER_NAME --password-stdin
       - run: docker push $LOGIN_SERVER/$REPO_NAME:latest
