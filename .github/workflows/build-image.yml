@@ -1,0 +1,14 @@
+name: build-image
+on: [push]
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    env:
+      LOGIN_SERVER: uselessregistry.azurecr.io
+      REPO_NAME: react-base
+      USER_NAME: uselessRegistry
+      PWD: ${{ secrets.AZURE_PUSH_KEY }}
+    steps:
+      - run: docker build -t $LOGIN_SERVER/$REPO_NAME:latest .
+      - run: docker login $LOGIN_SERVER --username $USER_NAME --password $PWD
+      - run: docker push $LOGIN_SERVER/$REPO_NAME:latest
