@@ -9,6 +9,7 @@ jobs:
       USER_NAME: uselessRegistry
       PWD: ${{ secrets.AZURE_PUSH_KEY }}
     steps:
+      - working-directory: work
       - run: ls ..
       - run: ls
       - run: pwd
