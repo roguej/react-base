@@ -10,7 +10,7 @@ jobs:
       PWD: ${{ secrets.AZURE_PUSH_KEY }}
     steps:
       - run: ls 
-        working-directory: /
+        working-directory: /home/runner/work/
       # $LOGIN_SERVER
       #- run: docker build -t $LOGIN_SERVER/$REPO_NAME:latest .
       #- run: docker login $LOGIN_SERVER --username $USER_NAME --password $PWD
