@@ -9,8 +9,8 @@ jobs:
       USER_NAME: uselessRegistry
       PWD: ${{ secrets.AZURE_PUSH_KEY }}
     steps:
+      - uses: actions/checkout@main
       - run: ls 
-        working-directory: /home/runner/work/react-base
       # $LOGIN_SERVER
       #- run: docker build -t $LOGIN_SERVER/$REPO_NAME:latest .
       #- run: docker login $LOGIN_SERVER --username $USER_NAME --password $PWD
