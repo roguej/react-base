@@ -8,9 +8,16 @@ jobs:
       REPO_NAME: react-base
       USER_NAME: uselessRegistry
     steps:
-      - uses: actions/checkout@main
-        with:
-          password: ${{ secrets.AZURE_PUSH_KEY }}
-      - run: docker login $LOGIN_SERVER --username $USER_NAME
+      - name: Build Container
+        uses: actions/checkout@main
       - run: docker build -t $LOGIN_SERVER/$REPO_NAME:latest .
+      - name: Docker Login
+        uses: docker/login-action@v1.10.0
+        with:
+          # Server address of Docker registry. If not set then will default to Docker Hub
+          registry: $LOGIN_SERVER
+          # Username used to log against the Docker registry
+          username: $USER_NAME
+          # Password or personal access token used to log against the Docker registry
+          password: ${{ secrets.AZURE_PUSH_KEY }}
       - run: docker push $LOGIN_SERVER/$REPO_NAME:latest
